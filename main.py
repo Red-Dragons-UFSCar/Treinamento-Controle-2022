@@ -1,43 +1,20 @@
 import time
-import sys
-import argparse
-
-from replace_protobuf import replacer_all
-
-#import fouls
 from bridge import (Actuator, Replacer, Vision, Referee)
-from simClasses import *
-from strategy import *
 
 
 if __name__ == "__main__":
 
-    mray = True
+    mray = True             # Escolha o time: True para Amarelo ou False para Azul (mray = My Robots Are Yellow)
 
     # Initialize all clients
     actuator = Actuator(mray, "127.0.0.1", 20011)
     replacement = Replacer(mray, "224.5.23.2", 10004)
     vision = Vision(mray, "224.0.0.1", 10002)
     referee = Referee(mray, "224.5.23.2", 10003)
-
-    # Initialize all  objects
-    robot0 = Robot(0, actuator, mray)
-    robot1 = Robot(1, actuator, mray)
-    robot2 = Robot(2, actuator, mray)
-
-    robotEnemy0 = Robot(0, actuator, not mray)
-    robotEnemy1 = Robot(1, actuator, not mray)
-    robotEnemy2 = Robot(2, actuator, not mray)
-
-    ball = Ball()
-
+    
     # Main infinite loop
     while True:
         t1 = time.time()
-
-        # Update the foul status
-        referee.update()
-        ref_data = referee.get_data()
 
         # Update the vision data
         vision.update()
@@ -47,14 +24,30 @@ if __name__ == "__main__":
         data_their_bots = field["their_bots"]  # Save data from enemy robots
         data_ball = field["ball"]  # Save the ball data
 
-        # Updates vision data on each field object
-        robot0.sim_get_pose(data_our_bot[0])
-        robot1.sim_get_pose(data_our_bot[1])
-        robot2.sim_get_pose(data_our_bot[2])
-        robotEnemy0.sim_get_pose(data_their_bots[0])
-        robotEnemy1.sim_get_pose(data_their_bots[1])
-        robotEnemy2.sim_get_pose(data_their_bots[2])
-        ball.sim_get_pose(data_ball)
+        '''
+            A variavel data_out_bot é uma lista de 3 objetos da classe Entity, do arquivo bridge.py
+            Esses objetos possuem as informações dos respectivos robôs do nosso time, seja azul ou amarelo, na seguinte ordem:
+            - Posição 0 : Robô 0
+            - Posição 1 : Robô 1
+            - Posição 2 : Robô 2
+            Para acessar as informações x, y, a (angulo) e velocidades, vejam a declaração da classe no arquivo bridge.py
+            
+            A variavel data_their_bots segue a mesma ideia, porém para os robôs do outro time
+            
+            A variavel data_ball é uma lista única que contém os dados da bola. O acesso a eles é feito da mesma forma, porém ele não possui angulo
+        '''
+        
+        '''
+            Aqui é onde vocês vão escrever o código. Apaguem o comentário e divirtam-se
+        '''
+            
+        '''
+            Para enviar uma velocidade para o simulador, utilizem o seguinte comando:
+            - actuator.send(index, vL, vR)
+            index: O índice do robô que você quer mover (0, 1 ou 2)
+            vL: Velocidade da roda esquerda em m/s
+            vR: Velocidade da roda direita em m/s
+        '''
 
         # synchronize code execution based on runtime and the camera FPS
         t2 = time.time()
