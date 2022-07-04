@@ -4,14 +4,14 @@ from bridge import (Actuator, Replacer, Vision, Referee)
 
 if __name__ == "__main__":
 
-    mray = True             # Escolha o time: True para Amarelo ou False para Azul (mray = My Robots Are Yellow)
+    mray = False             # Escolha o time: True para Amarelo ou False para Azul (mray = My Robots Are Yellow)
 
     # Initialize all clients
     actuator = Actuator(mray, "127.0.0.1", 20011)
     replacement = Replacer(mray, "224.5.23.2", 10004)
     vision = Vision(mray, "224.0.0.1", 10002)
     referee = Referee(mray, "224.5.23.2", 10003)
-    
+
     # Main infinite loop
     while True:
         t1 = time.time()
@@ -25,22 +25,25 @@ if __name__ == "__main__":
         data_ball = field["ball"]  # Save the ball data
 
         '''
-            A variavel data_out_bot é uma lista de 3 objetos da classe Entity, do arquivo bridge.py
+            A variavel data_our_bot é uma lista de 3 objetos da classe Entity, do arquivo bridge.py
             Esses objetos possuem as informações dos respectivos robôs do nosso time, seja azul ou amarelo, na seguinte ordem:
             - Posição 0 : Robô 0
             - Posição 1 : Robô 1
             - Posição 2 : Robô 2
             Para acessar as informações x, y, a (angulo) e velocidades, vejam a declaração da classe no arquivo bridge.py
-            
+
             A variavel data_their_bots segue a mesma ideia, porém para os robôs do outro time
-            
+
             A variavel data_ball é uma lista única que contém os dados da bola. O acesso a eles é feito da mesma forma, porém ele não possui angulo
         '''
-        
-        '''
-            Aqui é onde vocês vão escrever o código. Apaguem o comentário e divirtam-se
-        '''
-            
+
+        robo0Azul = data_our_bot[0]
+        xAzul0 = robo0Azul.x
+        print("Posição x: ", xAzul0)
+        yAzul0 = robo0Azul.y
+        print("Posicao y: ", yAzul0)
+        print("")
+
         '''
             Para enviar uma velocidade para o simulador, utilizem o seguinte comando:
             - actuator.send(index, vL, vR)
