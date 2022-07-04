@@ -39,9 +39,15 @@ if __name__ == "__main__":
 
         robo0Azul = data_our_bot[0]
         xAzul0 = robo0Azul.x
-        print("Posição x: ", xAzul0)
+        #print("Posição x: ", xAzul0)
         yAzul0 = robo0Azul.y
-        print("Posicao y: ", yAzul0)
+        #print("Posicao y: ", yAzul0)
+        #print("")
+
+        xBola = data_ball.x
+        yBola = data_ball.y
+        print("X bola: ", xBola)
+        print("Y bola: ", yBola)
         print("")
 
         '''
